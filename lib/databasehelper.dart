@@ -56,6 +56,7 @@ class DatabaseHelper {
     return await db.insert(tablename, data);
   }
 
+  //Search (by title)
   Future<List<MyDiary>> searchMyDiary(String keyword) async {
     final db = await database;
     final result = await db.query(
@@ -66,7 +67,8 @@ class DatabaseHelper {
     );
     return result.map((e) => MyDiary.fromMap(e)).toList();
   }
-
+  
+  //Update Data
   Future<int> updateMyDiary(MyDiary mydiary) async {
     final db = await database;
     return await db.update(
@@ -77,7 +79,7 @@ class DatabaseHelper {
     );
   }
 
-  //Delete Data (Based on diary ID, delete specific ID data)
+  //Delete Data (Delete specific ID data)
   Future<int> deleteMyDiary(int diaryId) async {
     final db = await database;
     return await db.delete(
